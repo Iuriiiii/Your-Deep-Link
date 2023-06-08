@@ -28,16 +28,28 @@ function isFirefox() {
   return userAgent().match(/Firefox/i);
 }
 
-function webkitGo(urls) {
+function debug(message) {
+  document.body.append(message);
+  document.body.append(document.createElement("br"));
+}
+
+function tryToGo(urls) {
   const { application, store, error } = urls;
 
-  document.location.replace(application);
-  setTimeout(() => (document.location = store), 250);
-  setTimeout(() => (document.location = error), 500);
+  document.location = application;
+  setTimeout(() => {
+    document.location = store;
+
+    setTimeout(() => (document.location = error), 3000);
+  }, 250);
+}
+
+function webkitGo(urls) {
+  tryToGo(urls);
 }
 
 function iFrameGo(urls) {
-  const { application, store, error } = urls;
+  const { application } = urls;
   const iFrameElement = document.createElement("iframe");
   iFrameElement.style.border = "none";
   iFrameElement.style.width = "1px";
@@ -51,8 +63,7 @@ function iFrameGo(urls) {
 
   window.addEventListener("load", () => {
     document.body.appendChild(iFrameElement);
-    setTimeout(() => (window.location = store), 250);
-    setTimeout(() => (window.location = error), 500);
+    setTimeout(() => tryToGo(urls), 250);
   });
 }
 
@@ -78,9 +89,9 @@ function go(type, urls) {
 function yourDeepLink(options) {
   const { onErrorGoTo } = options;
   const {
-    AppLink = onErrorGoTo,
-    PlayStoreLink = onErrorGoTo,
-    IosStoreLink = onErrorGoTo,
+    appLink = onErrorGoTo,
+    playStoreLink = onErrorGoTo,
+    iosStoreLink = onErrorGoTo,
   } = options;
 
   if (!(isAndroid() || isIOS())) {
@@ -89,8 +100,8 @@ function yourDeepLink(options) {
 
   const type = isAndroid() ? ANDROID : IOS;
   const urls = {
-    application: AppLink,
-    store: isAndroid() ? PlayStoreLink : IosStoreLink,
+    application: appLink,
+    store: isAndroid() ? playStoreLink : iosStoreLink,
     error: onErrorGoTo,
   };
 
