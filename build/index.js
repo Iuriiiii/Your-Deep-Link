@@ -2,13 +2,13 @@ import path from "path";
 import fs from "fs";
 export * from "./nestjs";
 export function YourDeepLink(options) {
-    options.PageTitle ||= "Your Deep Link";
+    options.pageTitle ||= "Your Deep Link";
     options.customIndexPath ||= path.join(__dirname, "..", "/public/index.html");
     options.customScriptPath ||= path.join(__dirname, "..", "/public/script.js");
     options.onErrorGoTo ||= "https://www.google.com/";
-    const { customIndexPath, customScriptPath, AndroidPackageName, } = options;
-    if (AndroidPackageName && !options.PlayStoreLink) {
-        options.PlayStoreLink ||= `https://play.google.com/store/apps/details?id=${AndroidPackageName}`;
+    const { customIndexPath, customScriptPath, androidPackageName, } = options;
+    if (androidPackageName && !options.playStoreLink) {
+        options.playStoreLink ||= `https://play.google.com/store/apps/details?id=${androidPackageName}`;
     }
     const indexContent = new TextDecoder().decode(fs.readFileSync(customIndexPath));
     const scriptContent = new TextDecoder().decode(fs.readFileSync(customScriptPath));
@@ -18,12 +18,12 @@ export function YourDeepLink(options) {
          */
         const { url, fallback } = request.query;
         fallback && (options.onErrorGoTo = fallback);
-        url && (options.AppLink = url);
+        url && (options.appLink = url);
         // if (!url) {
         //   return next();
         // }
         const responseBody = indexContent
-            .replaceAll("{{TITLE}}", options.PageTitle)
+            .replaceAll("{{TITLE}}", options.pageTitle)
             .replaceAll("{{OPTIONS}}", JSON.stringify({
             ...options,
             customIndexPath: undefined,
