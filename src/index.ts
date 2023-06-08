@@ -3,6 +3,8 @@ import fs from "fs";
 import { YourDeepLinkOptions } from "./interfaces";
 import { Request, Response, NextFunction } from "express";
 
+export * from './nestjs';
+
 export function YourDeepLink(options: Partial<YourDeepLinkOptions>) {
   options.PageTitle ||= "Your Deep Link";
   options.customIndexPath ||= path.join(__dirname, "..", "/public/index.html");

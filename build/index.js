@@ -1,5 +1,6 @@
 import path from "path";
 import fs from "fs";
+export * from './nestjs';
 export function YourDeepLink(options) {
     options.PageTitle ||= "Your Deep Link";
     options.customIndexPath ||= path.join(__dirname, "..", "/public/index.html");
