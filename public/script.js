@@ -29,14 +29,15 @@ function isFirefox() {
 }
 
 function webkitGo(urls) {
-  const { application, store } = urls;
+  const { application, store, error } = urls;
 
   document.location.replace(application);
   setTimeout(() => (document.location = store), 250);
+  setTimeout(() => (document.location = error), 500);
 }
 
 function iFrameGo(urls) {
-  const { application, store } = urls;
+  const { application, store, error } = urls;
   const iFrameElement = document.createElement("iframe");
   iFrameElement.style.border = "none";
   iFrameElement.style.width = "1px";
@@ -50,9 +51,8 @@ function iFrameGo(urls) {
 
   window.addEventListener("load", () => {
     document.body.appendChild(iFrameElement);
-    setTimeout(function () {
-      window.location = store;
-    }, 250);
+    setTimeout(() => (window.location = store), 250);
+    setTimeout(() => (window.location = error), 500);
   });
 }
 
@@ -91,6 +91,7 @@ function yourDeepLink(options) {
   const urls = {
     application: AppLink,
     store: isAndroid() ? PlayStoreLink : IosStoreLink,
+    error: onErrorGoTo,
   };
 
   go(type, urls);
