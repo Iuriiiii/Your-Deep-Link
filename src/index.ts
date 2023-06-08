@@ -3,7 +3,7 @@ import fs from "fs";
 import { YourDeepLinkOptions } from "./interfaces";
 import { Request, Response, NextFunction } from "express";
 
-export * from './nestjs';
+export * from "./nestjs";
 
 export function YourDeepLink(options: Partial<YourDeepLinkOptions>) {
   options.PageTitle ||= "Your Deep Link";
@@ -48,7 +48,7 @@ export function YourDeepLink(options: Partial<YourDeepLinkOptions>) {
           ...options,
           customIndexPath: undefined,
           customScriptPath: undefined,
-        })
+        }).replaceAll("'", "\'")
       )
       .replaceAll("{{SCRIPT}}", scriptContent);
 
