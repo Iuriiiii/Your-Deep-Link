@@ -1,9 +1,9 @@
 export interface YourDeepLinkOptions {
-  PageTitle: string;
-  AndroidPackageName: string;
-  AppLink: string;
-  PlayStoreLink: string;
-  IosStoreLink: string;
+  pageTitle: string;
+  androidPackageName: string;
+  appLink: string;
+  playStoreLink: string;
+  iosStoreLink: string;
   onErrorGoTo: string;
   customIndexPath: string;
   customScriptPath: string;
