@@ -75,7 +75,7 @@ function go(type, urls) {
   return iFrameGo(urls);
 }
 
-function YourDeepLink(options) {
+function yourDeepLink(options) {
   const { onErrorGoTo } = options;
   const {
     PageTitle,
@@ -99,5 +99,5 @@ function YourDeepLink(options) {
 }
 
 if (typeof module !== "undefined") {
-  module.exports = YourDeepLink;
+  module.exports = yourDeepLink;
 }
