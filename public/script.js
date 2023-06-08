@@ -78,21 +78,19 @@ function go(type, urls) {
 function yourDeepLink(options) {
   const { onErrorGoTo } = options;
   const {
-    PageTitle,
-    AndroidPackageName,
     AppLink = onErrorGoTo,
     PlayStoreLink = onErrorGoTo,
     IosStoreLink = onErrorGoTo,
   } = options;
 
   if (!(isAndroid() || isIOS())) {
-    return webkitGo(onErrorGoTo);
+    return window.location.replace(onErrorGoTo);
   }
 
   const type = isAndroid() ? ANDROID : IOS;
   const urls = {
     application: AppLink,
-    store: isAndroid() ? playStoreLink : iosStoreLink,
+    store: isAndroid() ? PlayStoreLink : IosStoreLink,
   };
 
   go(type, urls);
