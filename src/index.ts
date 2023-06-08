@@ -36,9 +36,9 @@ export function YourDeepLink(options: Partial<YourDeepLinkOptions>) {
     fallback && (options.onErrorGoTo = fallback);
     url && (options.AppLink = url);
 
-    if (!url) {
-      return next();
-    }
+    // if (!url) {
+    //   return next();
+    // }
 
     const responseBody: string = indexContent
       .replaceAll("{{TITLE}}", options.PageTitle!)

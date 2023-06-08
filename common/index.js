@@ -39,16 +39,16 @@ function YourDeepLink(options) {
         const { url, fallback } = request.query;
         fallback && (options.onErrorGoTo = fallback);
         url && (options.AppLink = url);
-        if (!url) {
-            return next();
-        }
+        // if (!url) {
+        //   return next();
+        // }
         const responseBody = indexContent
             .replaceAll("{{TITLE}}", options.PageTitle)
             .replaceAll("{{OPTIONS}}", JSON.stringify({
             ...options,
             customIndexPath: undefined,
             customScriptPath: undefined,
-        }))
+        }).replaceAll("'", "\'"))
             .replaceAll("{{SCRIPT}}", scriptContent);
         response
             .set("Content-Type", "text/html;charset=utf-8")
