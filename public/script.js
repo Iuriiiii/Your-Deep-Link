@@ -41,7 +41,7 @@ function tryToGo(urls) {
     document.location = store;
 
     setTimeout(() => (document.location = error), 3000);
-  }, 250);
+  }, 51);
 }
 
 function webkitGo(urls) {
@@ -74,13 +74,13 @@ function go(type, urls) {
   switch (type) {
     case ANDROID:
       if (isChrome() || isFirefox()) {
-        return iFrameGo(urls);
+        return webkitGo(urls);
       }
 
       break;
     case IOS:
       if (isCriOS() || isSafari()) {
-        return iFrameGo(urls);
+        return webkitGo(urls);
       }
   }
   return iFrameGo(urls);
