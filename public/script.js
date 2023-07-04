@@ -74,13 +74,13 @@ function go(type, urls) {
   switch (type) {
     case ANDROID:
       if (isChrome() || isFirefox()) {
-        return webkitGo(urls);
+        return iFrameGo(urls);
       }
 
       break;
     case IOS:
       if (isCriOS() || isSafari()) {
-        return webkitGo(urls);
+        return iFrameGo(urls);
       }
   }
   return iFrameGo(urls);
