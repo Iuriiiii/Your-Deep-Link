@@ -87,22 +87,22 @@ function go(type, urls) {
 }
 
 function yourDeepLink(options) {
-  const { onErrorGoTo } = options;
+  const { fallbackLink } = options;
   const {
-    appLink = onErrorGoTo,
-    playStoreLink = onErrorGoTo,
-    iosStoreLink = onErrorGoTo,
+    appLink = fallbackLink,
+    playStoreLink = fallbackLink,
+    iosStoreLink = fallbackLink,
   } = options;
 
   if (!(isAndroid() || isIOS())) {
-    return window.location.replace(onErrorGoTo);
+    return window.location.replace(fallbackLink);
   }
 
   const type = isAndroid() ? ANDROID : IOS;
   const urls = {
     application: appLink,
     store: isAndroid() ? playStoreLink : iosStoreLink,
-    error: onErrorGoTo,
+    error: fallbackLink,
   };
 
   go(type, urls);
