@@ -35,7 +35,7 @@ export function YourDeepLink(options) {
         if (Object.entries(options.query).length) {
             /* @ts-ignore */
             const query = new URLSearchParams(options.query).toString();
-            patch(options, { querys: "?" + query }, "@");
+            patch(options, { querys: "?" + query }, "$");
         }
         patch(options, options.params, ":");
         patch(options, options.query, "@");

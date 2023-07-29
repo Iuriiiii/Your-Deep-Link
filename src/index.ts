@@ -60,7 +60,7 @@ export function YourDeepLink(options: Partial<YourDeepLinkOptions>) {
     if (Object.entries(options.query).length) {
       /* @ts-ignore */
       const query: string = new URLSearchParams(options.query).toString();
-      patch(options, { querys: "?" + query }, "@");
+      patch(options, { querys: "?" + query }, "$");
     }
 
     patch(options, options.params, ":");
