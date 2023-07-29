@@ -10,6 +10,7 @@ export interface YourDeepLinkOptions {
   pageTitle: string;
   androidPackageName: string;
   appLink: string;
+  desktopLink: string;
   playStoreLink: string;
   iosStoreLink: string;
   fallbackLink: string;

@@ -92,10 +92,12 @@ function yourDeepLink(options) {
     appLink = fallbackLink,
     playStoreLink = fallbackLink,
     iosStoreLink = fallbackLink,
+    desktopLink = fallbackLink,
   } = options;
+  const isPhone = isAndroid() || isIOS();
 
-  if (!(isAndroid() || isIOS())) {
-    return window.location.replace(fallbackLink);
+  if (!isPhone) {
+    return window.location.replace(desktopLink);
   }
 
   const type = isAndroid() ? ANDROID : IOS;
